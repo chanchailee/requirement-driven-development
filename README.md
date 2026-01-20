@@ -22,8 +22,9 @@ RDD (Requirement-Driven Development) is a structured approach to development tha
 ### 1. Clone the Repository
 
 ```bash
-git clone https://github.com/<your-username>/rdd.git
-cd rdd
+git clone git@github.com:chanchailee/requirement-driven-development.git
+cd requirement-driven-development/command
+# rdd.md file is under requirement-driven-development/command folder
 ```
 
 ### 2. Choose Your Setup Method
@@ -205,6 +206,26 @@ Before marking a requirement as DONE:
 - Ensure `requirements/` folder exists in project root
 - Check write permissions on the folder
 
-## License
 
-MIT - Feel free to modify and share!
+---
+MIT License
+
+Copyright (c) 2025 Chanchai Lee
+
+Permission is hereby granted, free of charge, to any person obtaining a copy
+of this software and associated documentation files (the "Software"), to deal
+in the Software without restriction, including without limitation the rights
+to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
+copies of the Software, and to permit persons to whom the Software is
+furnished to do so, subject to the following conditions:
+
+The above copyright notice and this permission notice shall be included in all
+copies or substantial portions of the Software.
+
+THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
+IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
+FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
+AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
+LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
+OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
+SOFTWARE.
