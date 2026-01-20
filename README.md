@@ -282,7 +282,9 @@ If file access is not available, copy and paste the content of `rdd.md` directly
 
 ```bash
 # Create a new feature
-/rdd new create e-commerce platform name rdd-commerce looklike lazada using nextjs + using bun as run time and deliver with dockerize should be able to start app with docker-compose up
+/rdd new create e-commerce platform name rdd-commerce looklike lazada using nextjs + using 
+bun as run time and deliver with dockerize should be able to start app with docker-compose up
+the database use sqlite and should have basic features like user authentication , product search, product listing shopping cart and order management
 
 # Create with detailed description
 /rdd new create survey platform backoffice using react and microsoft fluent ui make it look enterprise grade
