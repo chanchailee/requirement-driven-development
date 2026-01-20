@@ -112,16 +112,17 @@ cd requirement-driven-development/command
 
 ```bash
 # Create a new feature
-/rdd new survey-platform-backoffice
+/rdd new create e-commerce platform name rdd-commerce looklike lazada using nextjs + using bun as run time and deliver with dockerize should be able to start app with docker-compose up
 
 # Create with detailed description
 /rdd new create survey platform backoffice using react and microsoft fluent ui make it look enterprise grade
 
 # Fix PR comments
-/rdd new fix all comments from amazon q for pr #123
+/rdd new fix all comments for pr [pr link here]
 
 # Resume interrupted work
-/rdd resume survey-platform-backoffice
+/rdd resume e-commerce platform
+/rdd resume continue pending task
 
 # Check all requirements status
 /rdd list
