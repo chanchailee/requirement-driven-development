@@ -9,13 +9,29 @@ RDD (Requirement-Driven Development) is a structured approach to development tha
 - Breaks down work into trackable tasks with time estimates
 - Enforces quality gates (testing, linting, documentation)
 - Maintains status flow from PENDING → IN_PROGRESS → DONE
-- Integrates with MCP tools (Context7, Playwright) for research and testing
+- Integrates with MCP tools (Context7, Playwright, Figma) for enhanced development experience
 
 ## Prerequisites
 
-### Required MCP Servers
-- **Context7 MCP** - For library documentation and best practices research
-- **Playwright MCP** - For E2E testing and visual debugging
+### MCP Servers
+
+> **Note:** RDD works without any MCP servers. The core workflow (requirements tracking, task management, quality gates) functions properly without MCP. However, MCP servers enhance the development experience significantly.
+
+| MCP Server | Status | Purpose |
+|------------|--------|---------|
+| **Context7 MCP** | Recommended | Library documentation lookup, best practices research, framework-specific guidance |
+| **Playwright MCP** | Recommended | UI E2E testing, visual debugging, screenshot capture, network request inspection |
+| **Figma MCP** | Nice to have | Design-to-code workflow, extracting design tokens, frontend development tasks |
+
+### Without MCP
+
+If you don't have MCP servers configured:
+- ✅ Requirement tracking works normally
+- ✅ Task management works normally
+- ✅ Quality gates work normally
+- ⚠️ Skip Context7 research steps (use manual documentation lookup)
+- ⚠️ Skip Playwright debugging steps (use browser DevTools instead)
+- ⚠️ Skip Figma integration (use manual design reference)
 
 ## Quick Start
 
@@ -23,8 +39,8 @@ RDD (Requirement-Driven Development) is a structured approach to development tha
 
 ```bash
 git clone git@github.com:chanchailee/requirement-driven-development.git
-cd requirement-driven-development/command
 # rdd.md file is under requirement-driven-development/command folder
+cd requirement-driven-development/command
 ```
 
 ### 2. Choose Your Setup Method
@@ -96,17 +112,19 @@ cd requirement-driven-development/command
 
 3. **Or paste directly** into the conversation before starting work.
 
+---
+
 ## Usage
 
 ### Available Commands
 
 | Command | Description | Example |
 |---------|-------------|---------|
-| `/rdd new <name>` | Create and execute new requirement | `/rdd new oauth-integration` |
-| `/rdd resume <name>` | Continue in-progress requirement | `/rdd resume oauth-integration` |
+| `/rdd new <n>` | Create and execute new requirement | `/rdd new oauth-integration` |
+| `/rdd resume <n>` | Continue in-progress requirement | `/rdd resume oauth-integration` |
 | `/rdd list` | Show all requirements with status | `/rdd list` |
-| `/rdd review <name>` | Analyze requirement quality | `/rdd review oauth-integration` |
-| `/rdd rollback <name>` | Revert failed requirement | `/rdd rollback oauth-integration` |
+| `/rdd review <n>` | Analyze requirement quality | `/rdd review oauth-integration` |
+| `/rdd rollback <n>` | Revert failed requirement | `/rdd rollback oauth-integration` |
 
 ### Real-World Examples
 
@@ -128,6 +146,8 @@ cd requirement-driven-development/command
 /rdd list
 ```
 
+---
+
 ## Folder Structure
 
 RDD creates and manages requirements in the following structure:
@@ -147,6 +167,8 @@ requirements/
 Example: 20241213_1430-oauth-integration.md
 ```
 
+---
+
 ## Workflow Overview
 
 ```
@@ -157,11 +179,13 @@ Example: 20241213_1430-oauth-integration.md
       │                    │         (rollback)            │
       │                    └───────────────────────────────┘
       │
-      └──▶ Research (Context7 MCP)
+      └──▶ Research (Context7 MCP - if available)
       └──▶ Plan tasks with estimates
       └──▶ Execute with quality gates
       └──▶ Test (ASK USER for test types)
 ```
+
+---
 
 ## Testing Strategy
 
@@ -169,10 +193,12 @@ RDD will **ASK USER** before running any tests:
 
 - **Unit tests** - Test individual functions/components
 - **Integration tests** - Test component interactions  
-- **UI E2E tests** - Using Playwright MCP
+- **UI E2E tests** - Using Playwright MCP (if available)
 - **API E2E tests** - Using Supertest/Jest
 
 You can choose which tests to run or skip all tests.
+
+---
 
 ## Quality Gates
 
@@ -184,13 +210,18 @@ Before marking a requirement as DONE:
 4. ✅ Code quality gates passed (linting, formatting)
 5. ✅ CLAUDE.md updated with learnings
 
+---
+
 ## Tips
 
 1. **Always have a `CLAUDE.md`** in your project root - RDD checks this first
 2. **Be specific** with requirement names for better tracking
-3. **Use Context7 MCP** for researching libraries before implementation
-4. **Use Playwright MCP** for debugging UI issues visually
-5. **Review regularly** with `/rdd list` to track progress
+3. **Use Context7 MCP** for researching libraries before implementation (if available)
+4. **Use Playwright MCP** for debugging UI issues visually (if available)
+5. **Use Figma MCP** for design-to-code workflow (if available)
+6. **Review regularly** with `/rdd list` to track progress
+
+---
 
 ## Troubleshooting
 
@@ -202,13 +233,16 @@ Before marking a requirement as DONE:
 ### MCP not working
 - Verify MCP servers are configured in your Claude settings
 - Check MCP server logs for errors
+- RDD will continue to work without MCP - just skip MCP-specific steps
 
 ### Requirements not tracking
 - Ensure `requirements/` folder exists in project root
 - Check write permissions on the folder
 
-
 ---
+
+## License
+
 MIT License
 
 Copyright (c) 2025 Chanchai Lee
