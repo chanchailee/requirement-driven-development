@@ -1,2 +1,210 @@
-# requirement-driven-development
-Requirement Driven Development for LLM tools
+# Requirement-Driven Development (RDD) Command
+
+A custom command for AI-assisted development workflow that helps you manage requirements, tasks, and quality gates systematically.
+
+## What is RDD?
+
+RDD (Requirement-Driven Development) is a structured approach to development that:
+- Creates traceable requirements with acceptance criteria
+- Breaks down work into trackable tasks with time estimates
+- Enforces quality gates (testing, linting, documentation)
+- Maintains status flow from PENDING → IN_PROGRESS → DONE
+- Integrates with MCP tools (Context7, Playwright) for research and testing
+
+## Prerequisites
+
+### Required MCP Servers
+- **Context7 MCP** - For library documentation and best practices research
+- **Playwright MCP** - For E2E testing and visual debugging
+
+## Quick Start
+
+### 1. Clone the Repository
+
+```bash
+git clone https://github.com/<your-username>/rdd.git
+cd rdd
+```
+
+### 2. Choose Your Setup Method
+
+- [Claude Code](#for-claude-code) (Recommended)
+- [Kiro](#for-kiro)
+- [Other LLM Tools](#for-other-llm-tools-cursor-windsurf-etc)
+
+---
+
+## Setup Instructions
+
+### For Claude Code
+
+1. **Create the commands directory** (if not exists):
+   ```bash
+   mkdir -p ~/.claude/commands
+   ```
+
+2. **Copy the RDD command file**:
+   ```bash
+   cp rdd.md ~/.claude/commands/rdd.md
+   ```
+
+3. **Start Claude Code**:
+   ```bash
+   claude
+   ```
+
+4. **Use the command**:
+   ```
+   /rdd new <requirement-name>
+   ```
+
+### For Kiro
+
+1. **Copy the RDD file** to a known location:
+   ```bash
+   mkdir -p ~/ai
+   cp rdd.md ~/ai/rdd.md
+   ```
+
+2. **Initialize in conversation**:
+   ```
+   read file '~/ai/rdd.md', then i will use command same as in that md file.
+   ```
+
+3. **Use commands** as normal after initialization.
+
+> **Note:** For Kiro-specific MCP setup, consult your team lead.
+
+### For Other LLM Tools (Cursor, Windsurf, etc.)
+
+1. **Copy the RDD file** to your project or home directory:
+   ```bash
+   # Project-level
+   mkdir -p ./.ai
+   cp rdd.md ./.ai/rdd.md
+   
+   # Or user-level
+   mkdir -p ~/ai
+   cp rdd.md ~/ai/rdd.md
+   ```
+
+2. **Reference in conversation**:
+   ```
+   Please read the file at ./.ai/rdd.md and follow the RDD workflow for my requests.
+   ```
+
+3. **Or paste directly** into the conversation before starting work.
+
+## Usage
+
+### Available Commands
+
+| Command | Description | Example |
+|---------|-------------|---------|
+| `/rdd new <name>` | Create and execute new requirement | `/rdd new oauth-integration` |
+| `/rdd resume <name>` | Continue in-progress requirement | `/rdd resume oauth-integration` |
+| `/rdd list` | Show all requirements with status | `/rdd list` |
+| `/rdd review <name>` | Analyze requirement quality | `/rdd review oauth-integration` |
+| `/rdd rollback <name>` | Revert failed requirement | `/rdd rollback oauth-integration` |
+
+### Real-World Examples
+
+```bash
+# Create a new feature
+/rdd new survey-platform-backoffice
+
+# Create with detailed description
+/rdd new create survey platform backoffice using react and microsoft fluent ui make it look enterprise grade
+
+# Fix PR comments
+/rdd new fix all comments from amazon q for pr #123
+
+# Resume interrupted work
+/rdd resume survey-platform-backoffice
+
+# Check all requirements status
+/rdd list
+```
+
+## Folder Structure
+
+RDD creates and manages requirements in the following structure:
+
+```
+requirements/
+├── 01_pending/          # New requirements waiting to start
+├── 02_in_progress/      # Currently being worked on
+├── 03_done/             # Completed requirements
+└── 04_archived/         # Rolled back or cancelled
+```
+
+### File Naming Convention
+```
+{YYYYMMDD_HHMM}-{requirement-name}.md
+
+Example: 20241213_1430-oauth-integration.md
+```
+
+## Workflow Overview
+
+```
+┌─────────────┐     ┌──────────────┐     ┌────────┐     ┌──────────┐
+│   PENDING   │ ──▶ │ IN_PROGRESS  │ ──▶ │  DONE  │ ──▶ │ ARCHIVED │
+└─────────────┘     └──────────────┘     └────────┘     └──────────┘
+      │                    │                               ▲
+      │                    │         (rollback)            │
+      │                    └───────────────────────────────┘
+      │
+      └──▶ Research (Context7 MCP)
+      └──▶ Plan tasks with estimates
+      └──▶ Execute with quality gates
+      └──▶ Test (ASK USER for test types)
+```
+
+## Testing Strategy
+
+RDD will **ASK USER** before running any tests:
+
+- **Unit tests** - Test individual functions/components
+- **Integration tests** - Test component interactions  
+- **UI E2E tests** - Using Playwright MCP
+- **API E2E tests** - Using Supertest/Jest
+
+You can choose which tests to run or skip all tests.
+
+## Quality Gates
+
+Before marking a requirement as DONE:
+
+1. ✅ All tasks in SUCCEED or FAILED (final states)
+2. ✅ All requested tests pass
+3. ✅ Documentation updated
+4. ✅ Code quality gates passed (linting, formatting)
+5. ✅ CLAUDE.md updated with learnings
+
+## Tips
+
+1. **Always have a `CLAUDE.md`** in your project root - RDD checks this first
+2. **Be specific** with requirement names for better tracking
+3. **Use Context7 MCP** for researching libraries before implementation
+4. **Use Playwright MCP** for debugging UI issues visually
+5. **Review regularly** with `/rdd list` to track progress
+
+## Troubleshooting
+
+### Command not recognized (Claude Code)
+- Ensure file is at `~/.claude/commands/rdd.md`
+- Restart Claude Code
+- Check file permissions: `chmod 644 ~/.claude/commands/rdd.md`
+
+### MCP not working
+- Verify MCP servers are configured in your Claude settings
+- Check MCP server logs for errors
+
+### Requirements not tracking
+- Ensure `requirements/` folder exists in project root
+- Check write permissions on the folder
+
+## License
+
+MIT - Feel free to modify and share!
