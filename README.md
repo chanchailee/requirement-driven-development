@@ -39,8 +39,8 @@ If you don't have MCP servers configured:
 
 ```bash
 git clone git@github.com:chanchailee/requirement-driven-development.git
-cd requirement-driven-development/command
 # rdd.md file is under requirement-driven-development/command folder
+cd requirement-driven-development/command
 ```
 
 ### 2. Choose Your Setup Method
@@ -239,11 +239,9 @@ Before marking a requirement as DONE:
 - Ensure `requirements/` folder exists in project root
 - Check write permissions on the folder
 
-
 ---
 
 ## License
-
 
 MIT License
 
